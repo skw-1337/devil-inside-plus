@@ -4,7 +4,7 @@ A modern launcher for **The Devil Inside** (Gamesquad / Cryo Interactive, 2000) 
 in the spirit of [Nocturne Plus](https://github.com/skw-1337/nocturne-plus): one window, one **Launch** button,
 and the game runs at native resolution on a modern PC.
 
-![Devil Inside Plus](docs/launcher.png)
+![Devil Inside Plus](docs/devil-inside-plus.png)
 
 The launcher *is* the vintage TV of the original `Devil Setup.exe`: its art is read at runtime from your own copy
 of the game (nothing from the game is redistributed), the settings are shown on the CRT screen and the knobs
