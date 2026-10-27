@@ -1,0 +1,16 @@
+# compiled binary: attached to GitHub releases, not stored in the repository
+DevilInsidePlus/DevilInsidePlus.exe
+*.pdb
+
+# never any game file (The Devil Inside belongs to its rights holders)
+*.gtz
+*.str
+*.hnm
+Devil.exe
+Devil Setup.exe
+Config.ini
+dgVoodoo.conf
+*.dll
+
+# Python
+__pycache__/
