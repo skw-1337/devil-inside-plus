@@ -71,3 +71,9 @@ Technical notes (causes, offsets, patches): [`DevilInsidePlus/TECHNICAL.md`](Dev
 - **dgVoodoo 2** by Dege — <http://dege.fw.hu> · <https://github.com/dege-diosg/dgVoodoo2> (downloaded, not redistributed)
 - `WinMX.dll` (CD audio emulation, `winmm` proxy) shipped with the Abandonware France release of the game
 - The Devil Inside © Gamesquad / Cryo Interactive. TV art © its owners, read from your own `Devil Setup.exe`.
+
+## License
+
+Made by skw-1337, released under the [MIT license](LICENSE). The Devil Inside is © its respective owners
+(Gamesquad / Cryo Interactive); this launcher contains no game data and reads the TV art from your own
+`Devil Setup.exe` at runtime. The screenshot in `docs/` shows that art and is not covered by the MIT license.
