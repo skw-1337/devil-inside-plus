@@ -820,7 +820,20 @@ namespace DevilInsidePlus
             {
                 try
                 {
-                    jeu.Preparer(reg, statut);
+                    try { jeu.Preparer(reg, statut); }
+                    catch (ExeInconnu ex)
+                    {
+                        // exe pas en 1.01 : le joueur peut jouer quand meme, sans les correctifs de l'exe
+                        Journal.Note("{0}", ex.Message);
+                        bool quandMeme = (bool)Invoke(new Func<bool>(() => MessageBox.Show(this,
+                            ex.Message + " Nothing was changed.\n\n" +
+                            "Play anyway without the engine patches? dgVoodoo, resolution and all other settings still apply, " +
+                            "but the speed fix, no-CD, widescreen FOV and Alt+Tab fixes won't.\n\n" +
+                            "For every fix, install the official patch 1.01 (linked on PCGamingWiki).",
+                            Text, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes));
+                        if (!quandMeme) { BeginInvoke(new Action(() => { partie = null; Dire("Launch cancelled."); })); return; }
+                        jeu.Preparer(reg, statut, true);
+                    }
                     var p = jeu.Lancer();
                     BeginInvoke(new Action(() => { partie = p; Dire("The game is running."); WindowState = FormWindowState.Minimized; }));
                     p.WaitForExit();

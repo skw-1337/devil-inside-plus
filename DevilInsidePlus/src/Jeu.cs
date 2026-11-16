@@ -26,6 +26,9 @@ namespace DevilInsidePlus
         public Correctif(string id, string desc, params Morceau[] m) { Id = id; Description = desc; Morceaux = m; }
     }
 
+    /// <summary>Devil.exe n'est pas la version 1.01 : les correctifs ne peuvent pas s'appliquer.</summary>
+    class ExeInconnu : Exception { public ExeInconnu(string m) : base(m) { } }
+
     class Jeu
     {
         public readonly string Dossier, Reserve, Originaux;
@@ -135,7 +138,11 @@ namespace DevilInsidePlus
             foreach (var c in Correctifs)
                 foreach (var m in c.Morceaux)
                     if (!Egal(d, m.Offset, m.Avant) && !Egal(d, m.Offset, m.Apres))
-                        throw new InvalidOperationException("This Devil.exe is not version 1.01 (unexpected bytes for patch \"" + c.Id + "\"). Nothing was changed.\n\nInstall the official patch 1.01 first (linked on PCGamingWiki), then launch again.");
+                    {
+                        // tous les correctifs decoches : on joue avec l'exe tel quel, sans rien verifier ni ecrire
+                        if (!Correctifs.Any(x => Actif(r, x))) { Journal.Note("Devil.exe non reconnu, aucun correctif demande : exe laisse tel quel"); return; }
+                        throw new ExeInconnu("This Devil.exe is not version 1.01 (unexpected bytes for patch \"" + c.Id + "\").");
+                    }
 
             // copie de l'exe d'origine (tous correctifs retires), une seule fois
             string orig = Path.Combine(Originaux, "Devil.exe");
@@ -312,13 +319,14 @@ namespace DevilInsidePlus
 
         // ------------------------------------------------------------------ lancement
 
-        public void Preparer(Reglages r, Action<string> statut)
+        public void Preparer(Reglages r, Action<string> statut, bool sansCorrectifs = false)
         {
             statut("Checking dgVoodoo…");
             InstallerDgVoodoo(statut);
             statut("Writing configuration…");
             EcrireConfigIni(r);
             EcrireDgVoodooConf(r);
+            if (sansCorrectifs) { Journal.Note("Lancement sans correctifs de Devil.exe (choix du joueur)"); return; }
             statut("Patching the engine…");
             AppliquerCorrectifs(r);
         }
