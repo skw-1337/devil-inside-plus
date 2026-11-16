@@ -32,7 +32,8 @@ namespace DevilInsidePlus
         public string Exe { get { return Path.Combine(Dossier, "Devil.exe"); } }
         public string FichierReglages { get { return Path.Combine(Reserve, "reglages.ini"); } }
 
-        // Offsets fichier de Devil.exe (version francaise ABWFR, 3 215 360 octets).
+        // Offsets fichier de Devil.exe v1.01 (patch officiel, identique en francais et en anglais : 3 215 360 octets,
+        // SHA-256 284c62ef...6242ce8). La version 1.00 non patchee n'est pas geree.
         // VA du code -> offset fichier : .text commence a VA 0x401000 / fichier 0x1000.
         const int SiteFov = 0x1B83D9, CaveFov = 0x84F0, ValeurFov = 0x8500;
 
@@ -134,7 +135,9 @@ namespace DevilInsidePlus
             foreach (var c in Correctifs)
                 foreach (var m in c.Morceaux)
                     if (!Egal(d, m.Offset, m.Avant) && !Egal(d, m.Offset, m.Apres))
-                        throw new InvalidOperationException("Devil.exe is not the expected version (unexpected bytes for patch \"" + c.Id + "\"). Nothing was changed.");
+                        throw new InvalidOperationException("This Devil.exe is not version 1.01 (unexpected bytes for patch \"" + c.Id + "\"). Nothing was changed.
+
+Install the official patch 1.01 first (linked on PCGamingWiki), then launch again.");
 
             // copie de l'exe d'origine (tous correctifs retires), une seule fois
             string orig = Path.Combine(Originaux, "Devil.exe");

@@ -34,7 +34,7 @@ Every executable patch is byte-checked before writing, reversible from the launc
 
 ## Install
 
-1. Install the game (your own copy).
+1. Install the game (your own copy) and the official **patch 1.01** (any language: the 1.01 `Devil.exe` is the same for all of them).
 2. Build or download `DevilInsidePlus.exe` and put it in the game folder, next to `Devil.exe`.
 3. Run it (**never as administrator**) and press **Launch**.
 

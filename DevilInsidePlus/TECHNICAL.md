@@ -1,7 +1,9 @@
 # Technical notes
 
-Target: French release of `Devil.exe` (3,215,360 bytes, as shipped by Abandonware France). File offsets below
-are for that build; `.text` starts at VA `0x401000` / file offset `0x1000`. Every patch checks the original bytes
+Target: `Devil.exe` **v1.01** (3,215,360 bytes, SHA-256 `284c62ef1898a36d92e62ae35d3014345b69fc4c345a95de88817f6716242ce8`).
+The official English patch 1.01 (`di101en.zip` → `DIPatcher.exe`, executable embedded at offset `0x4DDA8`) and the
+French release from Abandonware France carry the very same file: the language comes from `Config.ini` and the data,
+not from the executable. Unpatched 1.00 is not supported. File offsets below are for that build; `.text` starts at VA `0x401000` / file offset `0x1000`. Every patch checks the original bytes
 first and refuses to write on any other build.
 
 ## Patches
