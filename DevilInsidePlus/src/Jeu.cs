@@ -135,9 +135,7 @@ namespace DevilInsidePlus
             foreach (var c in Correctifs)
                 foreach (var m in c.Morceaux)
                     if (!Egal(d, m.Offset, m.Avant) && !Egal(d, m.Offset, m.Apres))
-                        throw new InvalidOperationException("This Devil.exe is not version 1.01 (unexpected bytes for patch \"" + c.Id + "\"). Nothing was changed.
-
-Install the official patch 1.01 first (linked on PCGamingWiki), then launch again.");
+                        throw new InvalidOperationException("This Devil.exe is not version 1.01 (unexpected bytes for patch \"" + c.Id + "\"). Nothing was changed.\n\nInstall the official patch 1.01 first (linked on PCGamingWiki), then launch again.");
 
             // copie de l'exe d'origine (tous correctifs retires), une seule fois
             string orig = Path.Combine(Originaux, "Devil.exe");
